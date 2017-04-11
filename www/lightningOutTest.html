@@ -1,0 +1,23 @@
+<html>
+	<script src="https://gs0.salesforce.com/lightning/lightning.out.js"></script>
+
+	<script>
+		var url = 'https://gs0.salesforce.com';
+		var accessToken = location.hash.split("=")[1];
+
+	    $Lightning.use("wave:waveApp", function() {               
+			$Lightning.createComponent("wave:waveDashboard", {                    
+			 	dashboardId: "0FKB00000005nruOAA"                
+			}, "waveCmp");
+        }, url, accessToken);
+	</script>
+
+	<head>
+		<meta http-equiv="Content-Language" content="en-us">
+		<meta http-equiv="Content-Type" content="text/html;">
+	</head>
+	<body>
+		Wave External Tests
+		<div id='waveCmp' />
+	</body>
+</html>

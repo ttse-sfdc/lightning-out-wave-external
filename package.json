@@ -1,0 +1,13 @@
+{
+  "name": "playground_test_site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jsforce": "^1.7.1"
+  }
+}
