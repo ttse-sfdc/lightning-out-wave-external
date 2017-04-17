@@ -1,6 +1,11 @@
 var jsforce = require("jsforce");
 
 module.exports = function(app) {
+
+	app.get('/oauth2/auth', function(req, res) {
+		res.redirect(oauth2.getAuthorizationUrl());
+	});
+	
 	app.get("/", function(req, res) {
 
 		// Put this into a Utils module...
