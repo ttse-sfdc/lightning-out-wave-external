@@ -2,10 +2,33 @@ var jsforce = require("jsforce");
 
 module.exports = function(app) {
 
+	var oauth2 = new jsforce.OAuth2({
+		clientId: process.env.CLIENT_ID,
+		clientSecret: process.env.CLIENT_SECRET,
+		redirectUri: process.env.BASE_URL
+	});
+
 	app.get('/oauth2/auth', function(req, res) {
 		res.redirect(oauth2.getAuthorizationUrl());
 	});
-	
+
+	app.get('/auth/callback', function(req, res) {
+		var conn = new jsforce.Connection({oauth2: oauth2});
+		var code = req.param('code');
+		conn.authorize(code, function(err, userInfo) {
+			if (err) {
+				return console.error(err);
+			}
+			req.session.accessToken = conn.accessToken;
+			req.session.instanceUrl = conn.instanceUrl;
+			req.session.refreshToken = conn.refreshToken;
+			console.log(conn.refreshToken);
+			
+			URL = "URL which I'm using for oauth"
+			res.redirect('/dfty/case');
+		});
+	});
+
 	app.get("/", function(req, res) {
 
 		// Put this into a Utils module...
