@@ -1,15 +1,31 @@
 <html>
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
 	<script src="https://gs0.salesforce.com/lightning/lightning.out.js"></script>
 
 	<script>
+		$.noConflict();
+
 		var url = 'https://gs0.salesforce.com';
-		var accessToken = location.hash.split("=")[1];
-		console.log(accessToken);
-	    $Lightning.use("wave:waveApp", function() {               
-			$Lightning.createComponent("wave:waveDashboard", {                    
-			 	dashboardId: "0FKB00000005nruOAA"                
-			}, "waveCmp");
-        }, url, accessToken);
+		
+
+		jQuery( document ).ready(function( $ ) {
+			var accessToken = location.hash.split("=")[1];
+			console.log(accessToken);
+
+		  jQuery('#accessToken').val(accessToken); 
+		});
+		
+		jQuery('#loadDb').click(function() {
+		  $Lightning.use("wave:waveApp", function() {               
+				$Lightning.createComponent("wave:waveDashboard", {                    
+				 	dashboardId: "0FKB00000005nruOAA"                
+				}, "waveCmp");
+    	}, url, jQuery('#accessToken').val());
+		});
+    
 	</script>
 
 	<head>
@@ -18,6 +34,8 @@
 		<title>Wave External Test</title>
 	</head>
 	<body>
+		<input id='accessToken' />
+		<button id='loadDb'>Load DB</button>
 		<div id='waveCmp' />
 	</body>
 </html>
