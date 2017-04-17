@@ -5,7 +5,7 @@ module.exports = function(app) {
 	var oauth2 = new jsforce.OAuth2({
 		clientId: process.env.CLIENT_ID,
 		clientSecret: process.env.CLIENT_SECRET,
-		redirectUri: process.env.INSTANCE_URL + '/oauth2/callback'
+		redirectUri: process.env.BASE_URL + '/oauth2/callback'
 	});
 
 	app.get('/oauth2/auth', function(req, res) {
