@@ -16,16 +16,20 @@
 			console.log(accessToken);
 
 		  jQuery('#accessToken').val(accessToken); 
+
+
+			jQuery('#loadDb').click(function() {
+				console.log("Get DB: " + jQuery('#accessToken').val());
+			  $Lightning.use("wave:waveApp", function() {               
+					$Lightning.createComponent("wave:waveDashboard", {                    
+					 	dashboardId: "0FKB00000005nruOAA"                
+					}, "waveCmp");
+	    	}, url, jQuery('#accessToken').val());
+			});
+		  
 		});
 		
-		jQuery('#loadDb').click(function() {
-			console.log("Get DB: " + jQuery('#accessToken').val());
-		  $Lightning.use("wave:waveApp", function() {               
-				$Lightning.createComponent("wave:waveDashboard", {                    
-				 	dashboardId: "0FKB00000005nruOAA"                
-				}, "waveCmp");
-    	}, url, jQuery('#accessToken').val());
-		});
+
     
 	</script>
 
