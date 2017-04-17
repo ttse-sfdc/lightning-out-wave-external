@@ -6,7 +6,7 @@ module.exports = function(app) {
 		// Put this into a Utils module...
 		var conn = new jsforce.Connection({
 			oauth2: {
-				loginUrl: "https://login.salesforce.com",
+				loginUrl: "https://externalwavetest.my.salesforce.com",
 				clientId: process.env.CLIENT_ID,
 				clientSecret: process.env.CLIENT_SECRET,
 				redirectUri: process.env.BASE_URL
