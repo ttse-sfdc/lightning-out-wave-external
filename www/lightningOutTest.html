@@ -4,7 +4,7 @@
 	<script>
 		var url = 'https://gs0.salesforce.com';
 		var accessToken = location.hash.split("=")[1];
-console.log(accessToken);
+		console.log(accessToken);
 	    $Lightning.use("wave:waveApp", function() {               
 			$Lightning.createComponent("wave:waveDashboard", {                    
 			 	dashboardId: "0FKB00000005nruOAA"                
@@ -15,9 +15,9 @@ console.log(accessToken);
 	<head>
 		<meta http-equiv="Content-Language" content="en-us">
 		<meta http-equiv="Content-Type" content="text/html;">
+		<title>Wave External Test</title>
 	</head>
 	<body>
-		Wave External Test
 		<div id='waveCmp' />
 	</body>
 </html>
