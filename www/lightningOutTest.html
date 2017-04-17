@@ -8,15 +8,13 @@
 	<script>
 		$.noConflict();
 
-		var url = 'https://gs0.salesforce.com';
+		var url = 'https://gs0.lightning.force.com';
 		
-
 		jQuery( document ).ready(function( $ ) {
 			var accessToken = location.hash.split("=")[1];
 			console.log(accessToken);
 
 		  jQuery('#accessToken').val(accessToken); 
-
 
 			jQuery('#loadDb').click(function() {
 				console.log("Get DB: " + jQuery('#accessToken').val());
@@ -26,11 +24,7 @@
 					}, "waveCmp");
 	    	}, url, jQuery('#accessToken').val());
 			});
-
 		});
-		
-
-    
 	</script>
 
 	<head>
