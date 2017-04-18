@@ -9,6 +9,22 @@
 		$.noConflict();
 
 		var url = 'https://externalwavetest.lightning.force.com';
+
+		handleSendFilter = function () {
+			console.log('Clicked');
+            // var evt = $A.get('e.wave:sendMessageToWave');
+            // evt.setParams({
+            //     payload: {
+			         //        "opportunity1": {
+			         //            "Product.Product.Family": [
+			         //                "Product"
+			         //            ]
+			         //        }
+			         //    },
+            //     instanceId: '0FKB00000002DdXOAU'
+            // });
+            // evt.fire();            
+        }
 		
 		jQuery( document ).ready(function( $ ) {
 			var accessToken = location.hash.split("=")[1];
@@ -16,18 +32,42 @@
 			
 		  	$Lightning.use("wave:waveApp", function() {               
 				$Lightning.createComponent("wave:waveDashboard", {                    
-				 	dashboardId: "0FKB00000005nruOAA"                
+				 	dashboardId: "0FKB00000002DdXOAU",
+				 	height: "900"
 				}, "waveCmp");
+			 	
+			 	$Lightning.createComponent("ui:button", {label: 'Test'}, "filterButton", function(cmp, msg, err) {
+		        	console.warn("Wave Dashboard Ready: ", cmp, msg, err);
+				});
+				
+				// $Lightning.createComponent("c:waveEventMonitor", {},
+    //             	"eventMonitor", function(cmp) {
+    //        		});
+
     		}, url, accessToken);
+
 		});
 	</script>
 
 	<head>
+		<style>
+			#header { 
+				background-color: powderblue;
+				height: 50px;
+			}
+			#waveCmp {
+				z-index: -1;
+			}
+		</style>
+
 		<meta http-equiv="Content-Language" content="en-us">
 		<meta http-equiv="Content-Type" content="text/html;">
 		<title>Wave External Test</title>
 	</head>
 	<body>
+		<div id='header'>
+			<div id='filterButton' />
+		</div>
 		<div id='waveCmp' height='750px'/>
 	</body>
 </html>

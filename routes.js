@@ -14,7 +14,7 @@ module.exports = function(app) {
 
 	app.get('/oauth2/callback', function(req, res) {
 	  var conn = new jsforce.Connection({ oauth2 : oauth2 });
-	  var code = req.params('code');
+	  var code = req.param('code');
 	  conn.authorize(code, function(err, userInfo) {
 	    if (err) { return console.error(err); }
 	    // Now you can get the access token, refresh token, and instance URL information.
