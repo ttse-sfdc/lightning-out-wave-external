@@ -9,54 +9,154 @@
 		$.noConflict();
 
 		var url = 'https://externalwavetest.lightning.force.com';
-
-		handleSendFilter = function () {
-			console.log('Clicked');
-            // var evt = $A.get('e.wave:sendMessageToWave');
-            // evt.setParams({
-            //     payload: {
-			         //        "opportunity1": {
-			         //            "Product.Product.Family": [
-			         //                "Product"
-			         //            ]
-			         //        }
-			         //    },
-            //     instanceId: '0FKB00000002DdXOAU'
-            // });
-            // evt.fire();            
-        }
 		
 		jQuery( document ).ready(function( $ ) {
 			var accessToken = location.hash.split("=")[1];
-			console.log(accessToken);
+			console.warn("Access Token: " + accessToken);
 			
-		  	$Lightning.use("wave:waveApp", function() {               
-				$Lightning.createComponent("wave:waveDashboard", {                    
-				 	dashboardId: "0FKB00000002DdXOAU",
-				 	height: "900"
-				}, "waveCmp");
-			 	
-			 	$Lightning.createComponent("ui:button", {label: 'Test'}, "filterButton", function(cmp, msg, err) {
-		        	console.warn("Wave Dashboard Ready: ", cmp, msg, err);
-				});
-				
-				// $Lightning.createComponent("c:waveEventMonitor", {},
-    //             	"eventMonitor", function(cmp) {
-    //        		});
+			$Lightning.use("wave:WaveApp", function(evt) {
+				$Lightning.createComponent(
+					"wave:waveDashboard", 
+					{
+						dashboardId: "0FKB00000002DdXOAU",
+						height: "900",
+	          showSharing: false
+					},
+					"waveCmp",
+					function(cmp,msg,err) {
+						console.warn("Wave Dashboard Ready: ", cmp, msg, err);
+					}
+				);
+			}, url, accessToken);
 
-    		}, url, accessToken);
+			jQuery("#filterButton").click(function () {
+				console.log("Filter Button Clicked");
+				sendFilter();
+			});
 
+			jQuery("#selectionButton").click(function () {
+				console.log("Selection Button Clicked");
+				sendSelection();
+			});
+
+			jQuery("#resetButton").click(function () {
+				console.log("Reset Button Clicked");
+				sendReset();
+			});
+
+			jQuery("#navButton").click(function () {
+				console.log("Nav Button Clicked");
+				jQuery("#waveCmp").empty();
+				$Lightning.createComponent(
+					"wave:waveDashboard", 
+					{
+						dashboardId: "0FKB00000005nruOAA",
+						height: "900",
+	          showSharing: false
+					},
+					"waveCmp",
+					function(cmp,msg,err) {
+						console.warn("Wave Dashboard Ready: ", cmp, msg, err);
+					}
+				);
+			});
 		});
+
+		sendSelection = function(){
+			var selection = JSON.stringify({
+        "datasets": {
+            "opportunity1": [
+                {
+                    "fields": ["Product.Product.Family"],
+                    "selection": ["Product"]
+                }                    
+            ]
+        }            
+	    });
+	    
+	    console.warn("selection: ", selection);
+	                     
+	    var evt = $A.get("e.wave:update");
+	    console.warn("evt: ", evt);
+	    
+	    var params = {
+	        value: selection,
+	        id: "0FKB00000002DdXOAU",
+	        type: "dashboard"                        
+	    };
+	    
+	    console.warn("param: ", params);
+	    
+	    evt.setParams(params);	    
+	    evt.fire();            
+		}
+
+		sendFilter = function () {
+      var filterJson = JSON.stringify({
+      	"datasets": {
+          "opportunity1": [
+              {
+                  "fields": ["Product.Product.Family"],
+                  "filter": {
+                       "operator": "matches",
+                       "values": ["Product"]
+                  }
+              }
+          ]
+        }
+      });
+      
+      var evt = $A.get("e.wave:update");
+      console.warn("evt: ", evt);
+      
+      var params = {
+          value: filterJson,
+          id: "0FKB00000002DdXOAU",
+          type: "dashboard"                        
+      };
+      
+      console.warn("param: ", params);
+      
+      evt.setParams(params);      
+      evt.fire();            
+		}
+
+		sendReset = function () {
+      var filterJson = JSON.stringify()
+      
+      var evt = $A.get("e.wave:update");
+      console.warn("evt: ", evt);
+      
+      var params = {
+          value: filterJson,
+          id: "0FKB00000002DdXOAU",
+          type: "dashboard"                        
+      };
+      
+      console.warn("param: ", params);
+      
+      evt.setParams(params);      
+      evt.fire();            
+		}
 	</script>
 
 	<head>
 		<style>
 			#header { 
-				background-color: powderblue;
-				height: 50px;
+				background-color: white;
+				width: 100%;
+				height: 65px;
+				 position: absolute;
+				top: 50px;
+			  left: 0;
+			  z-index: 10;
 			}
 			#waveCmp {
-				z-index: -1;
+				width: 100%;
+				height: 100%;
+				top: 50px;
+			  left: 0;
+			  position: absolute;
 			}
 		</style>
 
@@ -66,8 +166,12 @@
 	</head>
 	<body>
 		<div id='header'>
-			<div id='filterButton' />
-		</div>
-		<div id='waveCmp' height='750px'/>
+			<button id='filterButton'>FILTER</button>
+			<button id='selectionButton'>SELECTION</button>
+			<button id='resetButton'>RESET</button>
+			<button id="navButton">CHANGE DB</button>
+			<div id="listview"></div>
+		</div>		
+		<div id='waveCmp'></div>
 	</body>
 </html>
