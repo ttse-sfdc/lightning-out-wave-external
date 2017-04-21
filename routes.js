@@ -44,7 +44,7 @@ module.exports = function(app) {
 
 		conn.on("refresh", function(accessToken, connRes) {
 			console.log("Access Token: " + accessToken);
-			res.redirect("lightningOutTest.html#accessToken=" + accessToken);
+			res.redirect("home.html#accessToken=" + accessToken);
 		});
 
 		conn.identity( function(connErr, idenRes) {

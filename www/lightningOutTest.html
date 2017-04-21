@@ -29,6 +29,10 @@
 				);
 			}, url, accessToken);
 
+			jQuery("#homeButton").click(function () {
+				window.location.href = "home.html#accessToken=" + accessToken;
+			});
+
 			jQuery("#filterButton").click(function () {
 				console.log("Filter Button Clicked");
 				sendFilter();
@@ -196,7 +200,7 @@
 
 		<meta http-equiv="Content-Language" content="en-us">
 		<meta http-equiv="Content-Type" content="text/html;">
-		<title>Wave External Test</title>
+		<title>Lightning Out Test</title>
 	</head>
 	<body>
 		<div id='header'>
@@ -205,7 +209,7 @@
 			<button id='selectionButton2'>SELECT SERVICE</button>
 			<button id='resetButton'>RESET</button>
 			<button id="navButton">CHANGE DB</button>
-			<div id="listview"></div>
+			<button id="homeButton">HOME</div>
 		</div>		
 		<div id='waveCmp'></div>
 	</body>
