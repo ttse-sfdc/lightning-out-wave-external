@@ -12,7 +12,7 @@
 		
 		jQuery( document ).ready(function( $ ) {
 			var accessToken = location.hash.split("=")[1];
-			console.warn("Access Token: " + accessToken);
+			console.log("Access Token: " + accessToken);
 			
 			$Lightning.use("wave:WaveApp", function(evt) {
 				$Lightning.createComponent(
@@ -24,7 +24,7 @@
 					},
 					"waveCmp",
 					function(cmp,msg,err) {
-						console.warn("Wave Dashboard Ready: ", cmp, msg, err);
+						console.log("Wave Dashboard Ready: ", cmp, msg, err);
 					}
 				);
 			}, url, accessToken);
@@ -37,6 +37,11 @@
 			jQuery("#selectionButton").click(function () {
 				console.log("Selection Button Clicked");
 				sendSelection();
+			});
+
+			jQuery("#selectionButton2").click(function () {
+				console.log("Selection2 Button Clicked");
+				sendSelection2();
 			});
 
 			jQuery("#resetButton").click(function () {
@@ -56,7 +61,7 @@
 					},
 					"waveCmp",
 					function(cmp,msg,err) {
-						console.warn("Wave Dashboard Ready: ", cmp, msg, err);
+						console.log("Wave Dashboard Ready: ", cmp, msg, err);
 					}
 				);
 			});
@@ -74,10 +79,10 @@
         }            
 	    });
 	    
-	    console.warn("selection: ", selection);
+	    console.log("selection: ", selection);
 	                     
 	    var evt = $A.get("e.wave:update");
-	    console.warn("evt: ", evt);
+	    console.log("evt: ", evt);
 	    
 	    var params = {
 	        value: selection,
@@ -85,7 +90,36 @@
 	        type: "dashboard"                        
 	    };
 	    
-	    console.warn("param: ", params);
+	    console.log("param: ", params);
+	    
+	    evt.setParams(params);	    
+	    evt.fire();            
+		}
+
+		sendSelection2 = function(){
+			var selection = JSON.stringify({
+        "datasets": {
+            "opportunity1": [
+                {
+                    "fields": ["Product.Product.Family"],
+                    "selection": ["Service"]
+                }                    
+            ]
+        }            
+	    });
+	    
+	    console.log("selection: ", selection);
+	                     
+	    var evt = $A.get("e.wave:update");
+	    console.log("evt: ", evt);
+	    
+	    var params = {
+	        value: selection,
+	        id: "0FKB00000002DdXOAU",
+	        type: "dashboard"                        
+	    };
+	    
+	    console.log("param: ", params);
 	    
 	    evt.setParams(params);	    
 	    evt.fire();            
@@ -107,7 +141,7 @@
       });
       
       var evt = $A.get("e.wave:update");
-      console.warn("evt: ", evt);
+      console.log("evt: ", evt);
       
       var params = {
           value: filterJson,
@@ -115,28 +149,28 @@
           type: "dashboard"                        
       };
       
-      console.warn("param: ", params);
+      console.log("param: ", params);
       
       evt.setParams(params);      
       evt.fire();            
 		}
 
 		sendReset = function () {
-      var filterJson = JSON.stringify()
-      
-      var evt = $A.get("e.wave:update");
-      console.warn("evt: ", evt);
-      
-      var params = {
-          value: filterJson,
-          id: "0FKB00000002DdXOAU",
-          type: "dashboard"                        
-      };
-      
-      console.warn("param: ", params);
-      
-      evt.setParams(params);      
-      evt.fire();            
+			jQuery("#waveCmp").empty();
+      $Lightning.createComponent(
+				"wave:waveDashboard", 
+				{
+					dashboardId: "0FKB00000002DdXOAU",
+					height: "900",
+          showSharing: false
+				},
+				"waveCmp",
+				function(cmp,msg,err) {
+					console.log("Wave Dashboard Ready: ", cmp, msg, err);
+				}
+			);
+			// hide error message for now. may be a bug in the component
+			jQuery("#auraErrorMessage").css("display","none");
 		}
 	</script>
 
@@ -167,7 +201,8 @@
 	<body>
 		<div id='header'>
 			<button id='filterButton'>FILTER</button>
-			<button id='selectionButton'>SELECTION</button>
+			<button id='selectionButton'>SELECT PRODUCT</button>
+			<button id='selectionButton2'>SELECT SERVICE</button>
 			<button id='resetButton'>RESET</button>
 			<button id="navButton">CHANGE DB</button>
 			<div id="listview"></div>
