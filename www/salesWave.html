@@ -16,7 +16,7 @@
 			var accessToken = location.hash.split("=")[1];
 			console.log("Access Token: " + accessToken);
 			
-			$Lightning.use("wave:ExternalWaveApp", function(evt) {
+			$Lightning.use("wave:WaveApp", function(evt) {
 				$Lightning.createComponent(
 					"wave:waveDashboard", 
 					{
@@ -31,187 +31,187 @@
 				);
 			}, url, accessToken);
 
-			// jQuery("#homeButton").click(function () {
-			// 	window.location.href = "home.html#accessToken=" + accessToken;
-			// });
+			jQuery("#homeButton").click(function () {
+				window.location.href = "home.html#accessToken=" + accessToken;
+			});
 
-			// jQuery("#filterButton").click(function () {
-			// 	console.log("Filter Button Clicked");
-			// 	sendFilter();
-			// });
+			jQuery("#filterButton").click(function () {
+				console.log("Filter Button Clicked");
+				sendFilter();
+			});
 
-			// jQuery("#selectionButton").click(function () {
-			// 	console.log("Selection Button Clicked");
-			// 	sendSelection();
-			// });
+			jQuery("#selectionButton").click(function () {
+				console.log("Selection Button Clicked");
+				sendSelection();
+			});
 
-			// jQuery("#selectionButton2").click(function () {
-			// 	console.log("Selection2 Button Clicked");
-			// 	sendSelection2();
-			// });
+			jQuery("#selectionButton2").click(function () {
+				console.log("Selection2 Button Clicked");
+				sendSelection2();
+			});
 
-			// jQuery("#selectionButton3").click(function () {
-			// 	console.log("Selection3 Button Clicked");
-			// 	sendSelection3();
-			// });
+			jQuery("#selectionButton3").click(function () {
+				console.log("Selection3 Button Clicked");
+				sendSelection3();
+			});
 
-			// jQuery("#resetButton").click(function () {
-			// 	console.log("Reset Button Clicked");
-			// 	sendReset();
-			// });
+			jQuery("#resetButton").click(function () {
+				console.log("Reset Button Clicked");
+				sendReset();
+			});
 
-			// jQuery("#navButton").click(function () {
-			// 	console.log("Nav Button Clicked");
-			// 	jQuery("#waveCmp").empty();
-			// 	$Lightning.createComponent(
-			// 		"wave:waveDashboard", 
-			// 		{
-			// 			dashboardId: dashboardId2,
-			// 			height: "900",
-	  //         showSharing: false
-			// 		},
-			// 		"waveCmp",
-			// 		function(cmp,msg,err) {
-			// 			console.log("Wave Dashboard Ready: ", cmp, msg, err);
-			// 		}
-			// 	);
-			// });
+			jQuery("#navButton").click(function () {
+				console.log("Nav Button Clicked");
+				jQuery("#waveCmp").empty();
+				$Lightning.createComponent(
+					"wave:waveDashboard", 
+					{
+						dashboardId: dashboardId2,
+						height: "900",
+	          showSharing: false
+					},
+					"waveCmp",
+					function(cmp,msg,err) {
+						console.log("Wave Dashboard Ready: ", cmp, msg, err);
+					}
+				);
+			});
 		});
 
-		// sendSelection = function(){
-		// 	var selection = JSON.stringify({
-  //       "datasets": {
-  //           "opportunity_products1": [
-  //               {
-  //                   "fields": ["Opportunity.Type"],
-  //                   "selection": ["New Business"]
-  //               }                    
-  //           ]
-  //       }            
-	 //    });
+		sendSelection = function(){
+			var selection = JSON.stringify({
+        "datasets": {
+            "opportunity_products1": [
+                {
+                    "fields": ["Opportunity.Type"],
+                    "selection": ["New Business"]
+                }                    
+            ]
+        }            
+	    });
 	    
-	 //    console.log("selection: ", selection);
+	    console.log("selection: ", selection);
 	                     
-	 //    var evt = $A.get("e.wave:update");
-	 //    console.log("evt: ", evt);
+	    var evt = $A.get("e.wave:update");
+	    console.log("evt: ", evt);
 	    
-	 //    var params = {
-	 //        value: selection,
-	 //        id: dashboardId,
-	 //        type: "dashboard"                        
-	 //    };
+	    var params = {
+	        value: selection,
+	        id: dashboardId,
+	        type: "dashboard"                        
+	    };
 	    
-	 //    console.log("param: ", params);
+	    console.log("param: ", params);
 	    
-	 //    evt.setParams(params);	    
-	 //    evt.fire();            
-		// }
+	    evt.setParams(params);	    
+	    evt.fire();            
+		}
 
-		// sendSelection2 = function(){
-		// 	var selection = JSON.stringify({
-  //       "datasets": {
-  //           "opportunity_products1": [
-  //               {
-  //                   "fields": ["Opportunity.RecordType.Name"],
-  //                   "selection": ["Simple"]
-  //               }                    
-  //           ]
-  //       }            
-	 //    });
+		sendSelection2 = function(){
+			var selection = JSON.stringify({
+        "datasets": {
+            "opportunity_products1": [
+                {
+                    "fields": ["Opportunity.RecordType.Name"],
+                    "selection": ["Simple"]
+                }                    
+            ]
+        }            
+	    });
 	    
-	 //    console.log("selection: ", selection);
+	    console.log("selection: ", selection);
 	                     
-	 //    var evt = $A.get("e.wave:update");
-	 //    console.log("evt: ", evt);
+	    var evt = $A.get("e.wave:update");
+	    console.log("evt: ", evt);
 	    
-	 //    var params = {
-	 //        value: selection,
-	 //        id: dashboardId,
-	 //        type: "dashboard"                        
-	 //    };
+	    var params = {
+	        value: selection,
+	        id: dashboardId,
+	        type: "dashboard"                        
+	    };
 	    
-	 //    console.log("param: ", params);
+	    console.log("param: ", params);
 	    
-	 //    evt.setParams(params);	    
-	 //    evt.fire();            
-		// }
+	    evt.setParams(params);	    
+	    evt.fire();            
+		}
 
-		// sendSelection3 = function(){
-		// 	var selection = JSON.stringify({
-  //       "datasets": {
-  //           "opportunity_products1": [
-  //               {
-  //                   "fields": ["Opportunity.RecordType.Name"],
-  //                   "selection": ["Advanced"]
-  //               }                    
-  //           ]
-  //       }            
-	 //    });
+		sendSelection3 = function(){
+			var selection = JSON.stringify({
+        "datasets": {
+            "opportunity_products1": [
+                {
+                    "fields": ["Opportunity.RecordType.Name"],
+                    "selection": ["Advanced"]
+                }                    
+            ]
+        }            
+	    });
 	    
-	 //    console.log("selection: ", selection);
+	    console.log("selection: ", selection);
 	                     
-	 //    var evt = $A.get("e.wave:update");
-	 //    console.log("evt: ", evt);
+	    var evt = $A.get("e.wave:update");
+	    console.log("evt: ", evt);
 	    
-	 //    var params = {
-	 //        value: selection,
-	 //        id: dashboardId,
-	 //        type: "dashboard"                        
-	 //    };
+	    var params = {
+	        value: selection,
+	        id: dashboardId,
+	        type: "dashboard"                        
+	    };
 	    
-	 //    console.log("param: ", params);
+	    console.log("param: ", params);
 	    
-	 //    evt.setParams(params);	    
-	 //    evt.fire();            
-		// }
+	    evt.setParams(params);	    
+	    evt.fire();            
+		}
 
-		// sendFilter = function () {
-  //     var filterJson = JSON.stringify({
-  //     	"datasets": {
-  //         "opportunity1": [
-  //             {
-  //                 "fields": ["Product.Product.Family"],
-  //                 "filter": {
-  //                      "operator": "matches",
-  //                      "values": ["Product"]
-  //                 }
-  //             }
-  //         ]
-  //       }
-  //     });
+		sendFilter = function () {
+      var filterJson = JSON.stringify({
+      	"datasets": {
+          "opportunity1": [
+              {
+                  "fields": ["Product.Product.Family"],
+                  "filter": {
+                       "operator": "matches",
+                       "values": ["Product"]
+                  }
+              }
+          ]
+        }
+      });
       
-  //     var evt = $A.get("e.wave:update");
-  //     console.log("evt: ", evt);
+      var evt = $A.get("e.wave:update");
+      console.log("evt: ", evt);
       
-  //     var params = {
-  //         value: filterJson,
-  //         id: dashboardId,
-  //         type: "dashboard"                        
-  //     };
+      var params = {
+          value: filterJson,
+          id: dashboardId,
+          type: "dashboard"                        
+      };
       
-  //     console.log("param: ", params);
+      console.log("param: ", params);
       
-  //     evt.setParams(params);      
-  //     evt.fire();            
-		// }
+      evt.setParams(params);      
+      evt.fire();            
+		}
 
-		// sendReset = function () {
-		// 	jQuery("#waveCmp").empty();
-  //     $Lightning.createComponent(
-		// 		"wave:waveDashboard", 
-		// 		{
-		// 			dashboardId: dashboardId,
-		// 			height: "900",
-  //         showSharing: false
-		// 		},
-		// 		"waveCmp",
-		// 		function(cmp,msg,err) {
-		// 			console.log("Wave Dashboard Ready: ", cmp, msg, err);
-		// 		}
-		// 	);
-		// 	// hide error message for now. may be a bug in the component
-		// 	jQuery("#auraErrorMessage").css("display","none");
-		// }
+		sendReset = function () {
+			jQuery("#waveCmp").empty();
+      $Lightning.createComponent(
+				"wave:waveDashboard", 
+				{
+					dashboardId: dashboardId,
+					height: "900",
+          showSharing: false
+				},
+				"waveCmp",
+				function(cmp,msg,err) {
+					console.log("Wave Dashboard Ready: ", cmp, msg, err);
+				}
+			);
+			// hide error message for now. may be a bug in the component
+			jQuery("#auraErrorMessage").css("display","none");
+		}
 	</script>
 
 	<head>
