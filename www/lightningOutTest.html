@@ -9,9 +9,9 @@
 		$.noConflict();
 
 		var url = 'https://externalwavetest.lightning.force.com';
+		var accessToken = location.hash.split("=")[1];
 		
 		jQuery( document ).ready(function( $ ) {
-			var accessToken = location.hash.split("=")[1];
 			console.log("Access Token: " + accessToken);
 			
 			$Lightning.use("wave:waveApp", function(evt) {
