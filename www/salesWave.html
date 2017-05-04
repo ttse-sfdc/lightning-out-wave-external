@@ -83,9 +83,9 @@
 		sendSelection = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity_products1": [
+            "opportunity": [
                 {
-                    "fields": ["Opportunity.Type"],
+                    "fields": ["Type"],
                     "selection": ["New Business"]
                 }                    
             ]
@@ -112,9 +112,9 @@
 		sendSelection2 = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity_products1": [
+            "opportunity": [
                 {
-                    "fields": ["Opportunity.RecordType.Name"],
+                    "fields": ["RecordType.Name"],
                     "selection": ["Simple"]
                 }                    
             ]
@@ -141,9 +141,9 @@
 		sendSelection3 = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity_products1": [
+            "opportunity": [
                 {
-                    "fields": ["Opportunity.RecordType.Name"],
+                    "fields": ["RecordType.Name"],
                     "selection": ["Advanced"]
                 }                    
             ]

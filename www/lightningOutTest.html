@@ -18,7 +18,7 @@
 				$Lightning.createComponent(
 					"wave:waveDashboard", 
 					{
-						dashboardId: "0FKB00000002DdXOAU",
+						dashboardId: "0FKB00000002KiLOAU",
 						height: "900",
 	          showSharing: false,
 	          accessToken: accessToken
@@ -76,7 +76,7 @@
 		sendSelection = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity1": [
+            "opportunity": [
                 {
                     "fields": ["Product.Product.Family"],
                     "selection": ["Product"]
@@ -92,7 +92,7 @@
 	    
 	    var params = {
 	        value: selection,
-	        id: "0FKB00000002DdXOAU",
+	        id: "0FKB00000002KiLOAU",
 	        type: "dashboard"                        
 	    };
 	    
@@ -105,7 +105,7 @@
 		sendSelection2 = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity1": [
+            "opportunity": [
                 {
                     "fields": ["Product.Product.Family"],
                     "selection": ["Service"]
@@ -121,7 +121,7 @@
 	    
 	    var params = {
 	        value: selection,
-	        id: "0FKB00000002DdXOAU",
+	        id: "0FKB00000002KiLOAU",
 	        type: "dashboard"                        
 	    };
 	    
@@ -134,7 +134,7 @@
 		sendFilter = function () {
       var filterJson = JSON.stringify({
       	"datasets": {
-          "opportunity1": [
+          "opportunity": [
               {
                   "fields": ["Product.Product.Family"],
                   "filter": {
@@ -151,7 +151,7 @@
       
       var params = {
           value: filterJson,
-          id: "0FKB00000002DdXOAU",
+          id: "0FKB00000002KiLOAU",
           type: "dashboard"                        
       };
       
@@ -166,7 +166,7 @@
       $Lightning.createComponent(
 				"wave:waveDashboard", 
 				{
-					dashboardId: "0FKB00000002DdXOAU",
+					dashboardId: "0FKB00000002KiLOAU",
 					height: "900",
           showSharing: false,
 	        accessToken: accessToken
