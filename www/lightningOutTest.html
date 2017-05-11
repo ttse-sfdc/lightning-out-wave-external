@@ -9,7 +9,7 @@
 		$.noConflict();
 
 		var url = 'https://externalwavetest.lightning.force.com';
-		var accessToken = location.hash.split("=")[1];
+		var accessToken = sessionStorage.getItem("SFDC_ACCESS_TOKEN");
 		
 		jQuery( document ).ready(function( $ ) {
 			console.log("Access Token: " + accessToken);

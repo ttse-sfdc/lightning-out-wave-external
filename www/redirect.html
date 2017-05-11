@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script src="./scripts/utils.js"></script>	
+	</head>
+	<body>
+		<div id="message" />
+		<script>
+			var hashParams = mapUrlHashes();
+			var accessToken = hashParams["accessToken"];
+
+			if(accessToken && accessToken.length) {
+				sessionStorage.setItem("SFDC_ACCESS_TOKEN", accessToken);
+				window.location.href = "home.html";
+			} else {
+				// TODO: do an error page
+				document.querySelector("#message").innerHTML = "Could not properly load page. Please try again."
+			}
+		</script>		
+	</body>
+</html>

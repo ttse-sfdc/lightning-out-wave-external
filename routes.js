@@ -1,5 +1,7 @@
 var jsforce = require("jsforce");
 
+var utils = require("./utils");
+
 module.exports = function(app) {
 
 	var oauth2 = new jsforce.OAuth2({
@@ -30,27 +32,14 @@ module.exports = function(app) {
 
 	app.get("/", function(req, res) {
 
-		// Put this into a Utils module...
-		var conn = new jsforce.Connection({
-			oauth2: {
-				loginUrl: "https://login.salesforce.com",
-				clientId: process.env.CLIENT_ID,
-				clientSecret: process.env.CLIENT_SECRET,
-				redirectUri: process.env.BASE_URL
-			},
-			instanceUrl: process.env.INSTANCE_URL,
-			refreshToken: process.env.REFRESH_TOKEN
-		});
+		var def = utils.generateSfdcAccessToken();
+		def.then( function(accessToken) {
+			res.redirect("redirect.html#accessToken=" + accessToken);
+		}, function(err) {
+			console.error("[/] Could not generate access token: ", err);
 
-		conn.on("refresh", function(accessToken, connRes) {
-			console.log("Access Token: " + accessToken);
-			res.redirect("home.html#accessToken=" + accessToken);
-		});
-
-		conn.identity( function(connErr, idenRes) {
-			if(connErr) {
-				res.status(400).send(connErr);
-			}
+			// Should redirect to an error page (same as the one used by redirect.html)
+			res.status(400).send(err);
 		});
 		
 	});
