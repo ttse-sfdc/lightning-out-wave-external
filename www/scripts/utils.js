@@ -1,3 +1,5 @@
+var KEY_SFDC_ACCESS_TOKEN = "accessToken";
+
 function mapUrlHashes() {
 	var objHash = {};
 	if(!location.hash.length || location.hash === "#") {

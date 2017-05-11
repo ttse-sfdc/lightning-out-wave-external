@@ -6,10 +6,10 @@
 		<div id="message" />
 		<script>
 			var hashParams = mapUrlHashes();
-			var accessToken = hashParams["accessToken"];
+			var accessToken = hashParams[KEY_SFDC_ACCESS_TOKEN];
 
 			if(accessToken && accessToken.length) {
-				sessionStorage.setItem("SFDC_ACCESS_TOKEN", accessToken);
+				sessionStorage.setItem(KEY_SFDC_ACCESS_TOKEN, accessToken);
 				window.location.href = "home.html";
 			} else {
 				// TODO: do an error page
