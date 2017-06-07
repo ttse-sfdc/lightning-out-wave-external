@@ -7,8 +7,8 @@
 		$.noConflict();
 
 		var url = 'https://externalwavetest.lightning.force.com';
-		var dashboardId = "0FKB00000002KiGOAU";
-		var dashboardId2 = "0FKB00000002KZYOA2"
+		var dashboardId = "0FKB00000005ulCOAQ";
+		var dashboardId2 = "0FKB00000005ul9OAA"
 		var accessToken = sessionStorage.getItem(KEY_SFDC_ACCESS_TOKEN);
 		
 		jQuery( document ).ready(function( $ ) {
@@ -31,7 +31,7 @@
 			}, url, accessToken);
 
 			jQuery("#homeButton").click(function () {
-				window.location.href = "home.html#accessToken=" + accessToken;
+				window.location.href = "home.html";
 			});
 
 			jQuery("#filterButton").click(function () {

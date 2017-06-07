@@ -9,7 +9,7 @@ module.exports = function(app) {
 		clientSecret: process.env.CLIENT_SECRET,
 		redirectUri: process.env.BASE_URL + '/oauth2/callback'
 	});
-
+	// https://fierce-caverns-18828.herokuapp.com/oauth2/auth
 	app.get('/oauth2/auth', function(req, res) {
 		res.redirect(oauth2.getAuthorizationUrl());
 	});
