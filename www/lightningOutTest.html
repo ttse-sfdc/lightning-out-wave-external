@@ -29,7 +29,7 @@
 			}, url, accessToken);
 
 			jQuery("#homeButton").click(function () {
-				window.location.href = "home.html#accessToken=" + accessToken;
+				window.location.href = "home.html";
 			});
 
 			jQuery("#filterButton").click(function () {
@@ -77,7 +77,7 @@
             "opportunity": [
                 {
                     "fields": ["Product.Product.Family"],
-                    "selection": ["Product"]
+                    "selection": ["Car Accessories"]
                 }                    
             ]
         }            
@@ -106,7 +106,7 @@
             "opportunity": [
                 {
                     "fields": ["Product.Product.Family"],
-                    "selection": ["Service"]
+                    "selection": ["Tires & Wheels"]
                 }                    
             ]
         }            
@@ -137,7 +137,7 @@
                   "fields": ["Product.Product.Family"],
                   "filter": {
                        "operator": "matches",
-                       "values": ["Product"]
+                       "values": ["Car Electronics"]
                   }
               }
           ]
