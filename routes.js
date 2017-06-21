@@ -26,6 +26,8 @@ module.exports = function(app) {
 	    console.log("Instance URL: " + conn.instanceUrl);
 	    console.log("User ID: " + userInfo.id);
 	    console.log("Org ID: " + userInfo.organizationId);
+
+	    res.redirect("/redirect.html#accessToken=" + conn.accessToken);
 	    // ...
 	  });
 	});
