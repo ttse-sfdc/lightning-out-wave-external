@@ -7,6 +7,7 @@ export CLIENT_SECRET=5930902767596891690 && \
 export INSTANCE_URL=https://externalwavetest.my.salesforce.com && \
 export REFRESH_TOKEN=5Aep8614XGwzVzzTO54CmDqQVeOWipsp2bIlQ2Akykuk_VxlLVInLLjrhre7dZVRr98seMgFD0ofGR1L9MWXESd && \
 
+
 # # PRD
 # export CLIENT_ID=3MVG9CEn_O3jvv0xjKzbd8anvY_irzh5P.fA7JfAcNp7iTtDUIbDguPQJcTH7vyZZRmpdCfBlu3F5ppW_bthI && \
 # export CLIENT_SECRET=7025190072216292682 && \
