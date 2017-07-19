@@ -5,7 +5,7 @@ export LOGIN_URL=https://login.salesforce.com && \
 export CLIENT_ID=3MVG9SemV5D80oBe9YTRxk_b.CeEzBMGBM4sQJUW8MBZjtESSLKCoLNSYn_d79r_qw.3NOExoVZ4gQxL6RCeZ && \
 export CLIENT_SECRET=5930902767596891690 && \
 export INSTANCE_URL=https://externalwavetest.my.salesforce.com && \
-export REFRESH_TOKEN=5Aep8614XGwzVzzTO54CmDqQVeOWipsp2bIlQ2AJEdhlFttfrBcyU2JFJP9wpp0604TA2exvN3Uzxg4tseTdtFm && \
+export REFRESH_TOKEN=5Aep8614XGwzVzzTO54CmDqQVeOWipsp2bIlQ2Akykuk_VxlLVInLLjrhre7dZVRr98seMgFD0ofGR1L9MWXESd && \
 
 # # PRD
 # export CLIENT_ID=3MVG9CEn_O3jvv0xjKzbd8anvY_irzh5P.fA7JfAcNp7iTtDUIbDguPQJcTH7vyZZRmpdCfBlu3F5ppW_bthI && \
