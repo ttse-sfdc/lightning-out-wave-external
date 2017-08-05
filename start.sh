@@ -10,8 +10,8 @@ export LOGIN_URL=https://login.salesforce.com && \
 # PRD - Service
 export CLIENT_ID=3MVG9LV8n9LkqoRNgfVXMjFpN_5nqW48rhzF_RRxS4PiY9zAF.RPlW4Iql9kksd_NEJKG1WlUJeVKkJksv0rz && \
 export CLIENT_SECRET=439351262686267344 && \
-export INSTANCE_URL=https://login.my.salesforce.com && \
-export REFRESH_TOKEN=5Aep861EvoqimEYZqEpnH1Jx4lxG97dp_TZHRtscUWeHzqZdKmaSGnzLQLHr9M2JWLvJ1o2tVWiROlkY2Tubd0f && \
+export INSTANCE_URL=https://na37.salesforce.com && \
+export REFRESH_TOKEN=5Aep861EvoqimEYZqEpnH1Jx4lxG97dp_TZHRtscUWeHzqZdKmzb9PY55xoKU10eN6dwz4aRbk6UlS0WHzVPcBc && \
 
 # # PRD
 # export CLIENT_ID=3MVG9CEn_O3jvv0xjKzbd8anvY_irzh5P.fA7JfAcNp7iTtDUIbDguPQJcTH7vyZZRmpdCfBlu3F5ppW_bthI && \
