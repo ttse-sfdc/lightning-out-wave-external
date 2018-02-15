@@ -1,0 +1,217 @@
+<html>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://analytics-playground-dev.my.salesforce.com/lightning/lightning.out.js"></script>
+  <script src="./scripts/utils.js"></script>
+
+  <script>
+    $.noConflict();
+
+    var url = 'https://analytics-playground-dev.lightning.force.com';
+    var accessToken = sessionStorage.getItem(KEY_SFDC_ACCESS_TOKEN);
+    
+    jQuery( document ).ready(function( $ ) {
+      console.log("Access Token: " + accessToken);
+      
+      $Lightning.use("c:waveLtgnApp", function(evt) {
+        $Lightning.createComponent(
+          "wave:waveDashboard", 
+          {
+            dashboardId: "0FK6A0000001N65WAE",
+            height: "900",
+            showSharing: false,
+            accessToken: accessToken
+          },
+          "waveCmp",
+          function(cmp,msg,err) {
+            console.log("Wave Dashboard Ready: ", cmp, msg, err);
+          }
+        );
+      }, url, accessToken);
+
+      jQuery("#homeButton").click(function () {
+        window.location.href = "home.html";
+      });
+
+      jQuery("#filterButton").click(function () {
+        console.log("Filter Button Clicked");
+        sendFilter();
+      });
+
+      jQuery("#selectionButton").click(function () {
+        console.log("Selection Button Clicked");
+        sendSelection();
+      });
+
+      jQuery("#selectionButton2").click(function () {
+        console.log("Selection2 Button Clicked");
+        sendSelection2();
+      });
+
+      jQuery("#resetButton").click(function () {
+        console.log("Reset Button Clicked");
+        sendReset();
+      });
+
+      jQuery("#navButton").click(function () {
+        console.log("Nav Button Clicked");
+        jQuery("#waveCmp").empty();
+        $Lightning.createComponent(
+          "wave:waveDashboard", 
+          {
+            dashboardId: "0FKB00000005nruOAA",
+            height: "900",
+            showSharing: false,
+            accessToken: accessToken
+          },
+          "waveCmp",
+          function(cmp,msg,err) {
+            console.log("Wave Dashboard Ready: ", cmp, msg, err);
+          }
+        );
+      });
+    });
+
+    sendSelection = function(){
+      var selection = JSON.stringify({
+        "datasets": {
+            "user": [
+                {
+                    "fields": ["Role.RoleNames"],
+                    "selection": ["Elliot Executive"]
+                }                    
+            ]
+        }            
+      });
+      
+      console.log("selection: ", selection);
+                       
+      var evt = $A.get("e.wave:update");
+      console.log("evt: ", evt);
+      
+      var params = {
+          value: selection,
+          id: "0FK6A0000001N65WAE",
+          type: "dashboard"                        
+      };
+      
+      console.log("param: ", params);
+      
+      evt.setParams(params);      
+      evt.fire();            
+    }
+
+    sendSelection2 = function(){
+      var selection = JSON.stringify({
+        "datasets": {
+            "opportunity_splits": [
+                {
+                    "fields": ["Opportunity.Type"],
+                    "selection": ["New Business"]
+                }                    
+            ]
+        }            
+      });
+      
+      console.log("selection: ", selection);
+                       
+      var evt = $A.get("e.wave:update");
+      console.log("evt: ", evt);
+      
+      var params = {
+          value: selection,
+          id: "0FK6A0000001N65WAE",
+          type: "dashboard"                        
+      };
+      
+      console.log("param: ", params);
+      
+      evt.setParams(params);      
+      evt.fire();            
+    }
+
+    sendFilter = function () {
+      var filterJson = JSON.stringify({
+        "datasets": {
+          "opportunity": [
+              {
+                  "fields": ["Product.Product.Family"],
+                  "filter": {
+                       "operator": "matches",
+                       "values": ["Car Electronics"]
+                  }
+              }
+          ]
+        }
+      });
+      
+      var evt = $A.get("e.wave:update");
+      console.log("evt: ", evt);
+      
+      var params = {
+          value: filterJson,
+          id: "0FK6A0000001N65WAE",
+          type: "dashboard"                        
+      };
+      
+      console.log("param: ", params);
+      
+      evt.setParams(params);      
+      evt.fire();            
+    }
+
+    sendReset = function () {
+      jQuery("#waveCmp").empty();
+      $Lightning.createComponent(
+        "wave:waveDashboard", 
+        {
+          dashboardId: "0FK6A0000001N65WAE",
+          height: "900",
+          showSharing: false,
+          accessToken: accessToken
+        },
+        "waveCmp",
+        function(cmp,msg,err) {
+          console.log("Wave Dashboard Ready: ", cmp, msg, err);
+        }
+      );
+      // hide error message for now. may be a bug in the component
+      jQuery("#auraErrorMessage").css("display","none");
+    }
+  </script>
+
+  <head>
+    <style>
+      #header { 
+        background-color: white;
+        width: 100%;
+        height: 65px;
+         position: absolute;
+        top: 50px;
+        left: 0;
+        z-index: 10;
+      }
+      #waveCmp {
+        width: 100%;
+        height: 100%;
+        top: 50px;
+        left: 0;
+        position: absolute;
+      }
+    </style>
+
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta http-equiv="Content-Type" content="text/html;">
+    <title>Lightning Out Test</title>
+  </head>
+  <body>
+    <div id='header'>
+      <button id='filterButton'>FILTER</button>
+      <button id='selectionButton'>SELECT PRODUCT</button>
+      <button id='selectionButton2'>SELECT SERVICE</button>
+      <button id='resetButton'>RESET</button>
+      <button id="navButton">CHANGE DB</button>
+      <button id="homeButton">HOME</div>
+    </div>    
+    <div id='waveCmp'></div>
+  </body>
+</html>
