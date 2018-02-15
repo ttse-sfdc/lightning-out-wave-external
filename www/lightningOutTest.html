@@ -74,10 +74,10 @@
 		sendSelection = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity": [
+            "user": [
                 {
-                    "fields": ["Product.Product.Family"],
-                    "selection": ["Car Accessories"]
+                    "fields": ["Role.RoleNames"],
+                    "selection": ["Elliot Executive"]
                 }                    
             ]
         }            
@@ -103,10 +103,10 @@
 		sendSelection2 = function(){
 			var selection = JSON.stringify({
         "datasets": {
-            "opportunity": [
+            "opportunity_splits": [
                 {
-                    "fields": ["Product.Product.Family"],
-                    "selection": ["Tires & Wheels"]
+                    "fields": ["Opportunity.Type"],
+                    "selection": ["New Business"]
                 }                    
             ]
         }            
