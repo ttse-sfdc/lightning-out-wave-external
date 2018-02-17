@@ -14,11 +14,9 @@
       
       $Lightning.use("c:imgLtgnApp", function(evt) {
         $Lightning.createComponent(
-          "aura:HTML",
+          "c:waveLtgnComp",
            { 
-               tag: "img",
-               HTMLAttributes:{"src": "/resource/Product_A"}
-           },
+               },
           "waveCmp",
           function(cmp,msg,err) {
             console.log("Wave Dashboard Ready: ", cmp, msg, err);
