@@ -14,7 +14,7 @@
       
       $Lightning.use("c:imgLtgnApp", function(evt) {
         $Lightning.createComponent(
-          "forceChatter:feed", {type: type, subjectId: subjectId},
+          "forceChatter:feed", {type: 'NEWS', subjectId: subjectId},
           "waveCmp",
           function(cmp,msg,err) {
             console.log("Wave Dashboard Ready: ", cmp, msg, err);
